@@ -4,6 +4,12 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
+  const todos = [
+    { id: 1, body: '目を覚ます' },
+    { id: 2, body: '食事をする' },
+    { id: 3, body: '歯を磨く' },
+  ];
+
   return (
     <div>
       <Head>
@@ -14,12 +20,12 @@ const Home: NextPage = () => {
 
       <h1>Todo List</h1>
       <ul>
-        <li>todo 1</li>
-        <li>todo 2</li>
-        <li>todo 3</li>
+        {todos.map((todo) =>
+          <li>{todo.body}</li>
+        )}
       </ul>
     </div>
   )
 }
 
-export default Home
+export default Home;
