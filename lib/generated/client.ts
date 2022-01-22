@@ -79,12 +79,13 @@ export type GetUserQueryVariables = Exact<{
 }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', user: { __typename?: 'User', age: number, name: string, gender: number } };
+export type GetUserQuery = { __typename?: 'Query', user: { __typename?: 'User', id: string, age: number, name: string, gender: number } };
 
 
 export const GetUserDocument = gql`
     query getUser($id: ID!) {
   user(id: $id) {
+    id
     age
     name
     gender
