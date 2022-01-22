@@ -1,0 +1,6 @@
+schema: /Users/takanamito/ghq/github.com/takanamito/gqlgen-todos/graph/schema.graphqls
+generates:
+  ./src/types.ts:
+    plugins:
+      - typescript
+      - typescript-operations
