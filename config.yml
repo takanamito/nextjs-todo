@@ -1,4 +1,5 @@
 schema: /Users/takanamito/ghq/github.com/takanamito/gqlgen-todos/graph/schema.graphqls
+documents: graphql/**/*.graphql
 generates:
   ./src/types.ts:
     plugins:
