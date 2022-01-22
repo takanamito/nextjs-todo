@@ -41,7 +41,19 @@ export type NewUser = {
 
 export type Query = {
   __typename?: 'Query';
+  todo: Todo;
   todos: Array<Todo>;
+  user: User;
+};
+
+
+export type QueryTodoArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryUserArgs = {
+  id: Scalars['ID'];
 };
 
 export type Todo = {
