@@ -70,3 +70,10 @@ export type User = {
   id: Scalars['ID'];
   name: Scalars['String'];
 };
+
+export type GetUserQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type GetUserQuery = { __typename?: 'Query', user: { __typename?: 'User', age: number, name: string, gender: number } };
