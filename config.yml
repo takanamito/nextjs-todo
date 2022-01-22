@@ -1,7 +1,7 @@
 schema: /Users/takanamito/ghq/github.com/takanamito/gqlgen-todos/graph/schema.graphqls
 documents: graphql/**/*.graphql
 generates:
-  ./src/types.ts:
+  lib/generated/client.ts:
     plugins:
       - typescript
       - typescript-operations
