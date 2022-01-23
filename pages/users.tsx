@@ -8,13 +8,12 @@ const client = new GraphQLClient("http://localhost:8080/query", { mode: 'cors' }
 const sdk = getSdk(client)
 
 const Users: NextPage = () => {
-  const [user, setUser] = useState<User | null>(null)
+  const [users, setUsers] = useState<Array<User>>([])
 
   useEffect(() => {
-    sdk.getUser({ id: '1' })
+    sdk.getUsers()
       .then((res) => {
-        console.log(res)
-        setUser(res.user)
+        setUsers(res.users)
       })
       .catch(err => {
         console.log(err)
@@ -28,10 +27,13 @@ const Users: NextPage = () => {
       </Head>
 
       <h1>User List</h1>
-      <p>{user?.id}</p>
-      <p>{user?.name}</p>
-      <p>{user?.age}</p>
-      <p>{user?.gender}</p>
+      <ul>
+        {users.map((user) => (
+          <li>
+            id: {user.id}, name: {user.name}, age: {user.age}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
