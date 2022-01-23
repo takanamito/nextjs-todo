@@ -47,6 +47,7 @@ export type Query = {
   todo: Todo;
   todos: Array<Todo>;
   user: User;
+  users: Array<User>;
 };
 
 
@@ -81,6 +82,11 @@ export type GetUserQueryVariables = Exact<{
 
 export type GetUserQuery = { __typename?: 'Query', user: { __typename?: 'User', id: string, age: number, name: string, gender: number } };
 
+export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetUsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', id: string, name: string, age: number, gender: number }> };
+
 
 export const GetUserDocument = gql`
     query getUser($id: ID!) {
@@ -88,6 +94,16 @@ export const GetUserDocument = gql`
     id
     age
     name
+    gender
+  }
+}
+    `;
+export const GetUsersDocument = gql`
+    query getUsers {
+  users {
+    id
+    name
+    age
     gender
   }
 }
@@ -102,6 +118,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     getUser(variables: GetUserQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetUserQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetUserQuery>(GetUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUser');
+    },
+    getUsers(variables?: GetUsersQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetUsersQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetUsersQuery>(GetUsersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUsers');
     }
   };
 }
